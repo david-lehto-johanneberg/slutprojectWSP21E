@@ -63,3 +63,7 @@ post('/newuser') do
   session["user"] = params["username"]
   redirect("/")
 end
+
+get('/dokumentation') do
+  slim(:"dokumentation/dokumentation")
+end
