@@ -27,29 +27,15 @@ end
 post('/notes/create') do
   if session["notes"] == nil
     session["notes"] = []
+    session["notes"] << params["rubrik"]
+    session["notes"] << params["author"]
     session["notes"] << params["ny_note"]
+
   else
+    session["notes"] << params["rubrik"]
+    session["notes"] << params["author"]
     session["notes"] << params["ny_note"]
-  end
-  redirect('/notes')
-end
 
-post('/notes/create_author') do
-  if session["author"] == nil
-    session["author"] = []
-    session["author"] << params["author"]
-  else
-    session["author"] << params["author"]
-  end
-  redirect('/notes')
-end
-
-post('/notes/create_rubrik') do
-  if session["rubrik"] == nil
-    session["rubrik"] = []
-    session["rubrik"] << params["rubrik"]
-  else
-    session["rubrik"] << params["rubrik"]
   end
   redirect('/notes')
 end
