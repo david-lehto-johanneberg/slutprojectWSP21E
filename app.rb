@@ -47,9 +47,28 @@ end
 
 post('/newuser') do
   session["user"] = params["username"]
+  session["password"] = params["password"]
   redirect("/")
 end
 
 get('/dokumentation') do
   slim(:"dokumentation/dokumentation")
 end
+
+get('/delete_notes') do
+  session["notes"] = nil
+  redirect('/notes')
+end
+
+post('/login') do
+  if session["password"] == params["password"]
+    redirect ('/notes/new') 
+  else 
+    "fel lösenord"
+  end
+end
+
+get('/login') do
+  slim(:"user/login")
+end
+
